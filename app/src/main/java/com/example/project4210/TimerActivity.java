@@ -25,11 +25,33 @@ public class TimerActivity extends AppCompatActivity {
         tv_scramble.setText(generateScramble(20));
     }
 
+    //function to generate a Rubik's cube scramble without duplicating or useless steps
     private String generateScramble(int length){
         String scramble = "";
-        for (int i = length; i <= length; i++) {
-            scramble += " " + rotations[(int)Math.random()*rotations.length].toString();
+        String[] scrambleArray = new String[length];
+        boolean isGoodScramble;
+
+        scrambleArray[0] = rotations[(int)(Math.random() * rotations.length)];
+        for (int i = 1; i < length; i++) {
+            scrambleArray[i] = rotations[(int)(Math.random() * rotations.length)];
+
+            //check if the rotation is same with the previous rotation
+            do {
+                if (scrambleArray[i].charAt(0) == scrambleArray[i - 1].charAt(0)) {
+                    isGoodScramble = false;
+                    scrambleArray[i] = rotations[(int)(Math.random() * rotations.length)];
+                } else {
+                    isGoodScramble = true;
+                }
+            } while (!isGoodScramble);
+
         }
+
+        //set scrambleArray to a String
+        for (String s : scrambleArray) {
+            scramble += s + " ";
+        }
+
         return scramble;
     }
 }
