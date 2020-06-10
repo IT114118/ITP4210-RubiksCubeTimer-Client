@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,52 +9,63 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/btn_timer"
-            android:text="Timer"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_margin="15dp"
             android:layout_height="wrap_content"
-            />
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:text="Timer" />
 
         <Button
             android:id="@+id/btn_algorithm"
-            android:text="Algorithm"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"/>
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:text="Algorithm" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="0dp">
 
         <Button
             android:id="@+id/btn_record"
-            android:text="Record"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"/>
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:text="Record" />
 
         <Button
             android:id="@+id/btn_settings"
-            android:text="Settings"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"/>
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:text="Settings" />
 
     </LinearLayout>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
