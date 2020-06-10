@@ -1,7 +1,11 @@
 package com.example.project4210;
 
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -16,6 +20,8 @@ public class TimerActivity extends AppCompatActivity {
 
     private TextView tv_scramble;
 
+    private Chronometer chronometer_timer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +29,9 @@ public class TimerActivity extends AppCompatActivity {
 
         tv_scramble = findViewById(R.id.tv_scramble);
         tv_scramble.setText(generateScramble(20));
+
+        chronometer_timer = findViewById(R.id.chronometer_timer);
+
     }
 
     //function to generate a Rubik's cube scramble without duplicating or useless steps
