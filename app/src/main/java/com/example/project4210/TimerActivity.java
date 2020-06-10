@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import java.util.Locale;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TimerActivity extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class TimerActivity extends AppCompatActivity {
 
     private Chronometer chronometer_timer;
 
+    private Timer timer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,37 @@ public class TimerActivity extends AppCompatActivity {
         chronometer_timer = findViewById(R.id.chronometer_timer);
 
     }
+
+    //計時器, 未試
+    private void startChronometer(){
+        chronometer_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
+            @Override
+            public void onChronometerTick(Chronometer cArg) {
+                long time = SystemClock.elapsedRealtime() - cArg.getBase();
+                int h   = (int)(time /3600000);
+                int m = (int)(time - h*3600000)/60000;
+                int s= (int)(time - h*3600000- m*60000)/1000 ;
+                int mill = (int)(time - h*3600000- m*60000- s);
+                String mm = m < 10 ? "0"+m: m+"";
+                String ss = s < 10 ? "0"+s: s+"";
+                String millstring = null;
+                if (mill < 1000){
+                    millstring = "0"+ mill;
+                } else if(mill < 100){
+                    millstring = "00"+ mill;
+                }else if (mill < 10){
+                    millstring = "000"+ mill;
+                } else {
+                    millstring= mill+"";
+                }
+                cArg.setText(mm+":"+ss+ ":"+ millstring);
+            }
+        });
+        chronometer_timer.setBase(SystemClock.elapsedRealtime());
+        chronometer_timer.start();
+
+    }
+
 
     //function to generate a Rubik's cube scramble without duplicating or useless steps
     private String generateScramble(int length){
@@ -82,4 +118,6 @@ public class TimerActivity extends AppCompatActivity {
 
         return str;
     }
+
+
 }
