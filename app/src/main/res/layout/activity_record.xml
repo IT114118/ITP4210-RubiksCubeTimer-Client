@@ -84,6 +84,13 @@
 
     </LinearLayout>
 
+    <View
+        android:background="#777"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
     <LinearLayout
         android:id="@+id/linearLayout_recordList"
         android:layout_margin="15dp"
