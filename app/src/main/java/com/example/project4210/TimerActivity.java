@@ -14,8 +14,8 @@ public class TimerActivity extends AppCompatActivity {
 
     private String[] rotations = {
             "U","D","R","L","F","B",
-            "U'","D'","R'","L'","F'",
-            "U2","D2","R2","L2","F2"
+            "U'","D'","R'","L'","F'", "B'",
+            "U2","D2","R2","L2","F2","B2"
     };
 
     private TextView tv_scramble;
