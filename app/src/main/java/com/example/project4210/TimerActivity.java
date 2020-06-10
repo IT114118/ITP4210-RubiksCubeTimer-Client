@@ -1,7 +1,11 @@
 package com.example.project4210;
 
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -10,11 +14,13 @@ public class TimerActivity extends AppCompatActivity {
 
     private String[] rotations = {
             "U","D","R","L","F","B",
-            "U'","D'","R'","L'","F'",
-            "U2","D2","R2","L2","F2"
+            "U'","D'","R'","L'","F'", "B'",
+            "U2","D2","R2","L2","F2","B2"
     };
 
     private TextView tv_scramble;
+
+    private Chronometer chronometer_timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +28,58 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
 
         tv_scramble = findViewById(R.id.tv_scramble);
-        tv_scramble.setText(generateScramble(20));
+        //tv_scramble.setText(generateScramble(20));
+        tv_scramble.setText(createScramble(20));
+
+        chronometer_timer = findViewById(R.id.chronometer_timer);
+
     }
 
+    //function to generate a Rubik's cube scramble without duplicating or useless steps
     private String generateScramble(int length){
         String scramble = "";
-        for (int i = length; i <= length; i++) {
-            scramble += " " + rotations[(int)Math.random()*rotations.length].toString();
+        String[] scrambleArray = new String[length];
+        boolean isGoodScramble;
+
+        scrambleArray[0] = rotations[(int)(Math.random() * rotations.length)];
+        for (int i = 1; i < length; i++) {
+            scrambleArray[i] = rotations[(int)(Math.random() * rotations.length)];
+
+            //check if the rotation is same with the previous rotation
+            do {
+                if (scrambleArray[i].charAt(0) == scrambleArray[i - 1].charAt(0)) {
+                    isGoodScramble = false;
+                    scrambleArray[i] = rotations[(int)(Math.random() * rotations.length)];
+                } else {
+                    isGoodScramble = true;
+                }
+            } while (!isGoodScramble);
+
         }
+
+        //set scrambleArray to a String
+        for (String s : scrambleArray) {
+            scramble += s + " ";
+        }
+
         return scramble;
+    }
+
+    private String createScramble(int len) {
+        String[] scramble = new String[len];
+        for (int i = 0; i < len; i++) {
+            int rand = (int)(Math.random() * rotations.length);
+            scramble[i] = rotations[rand];
+            if (i > 0 && scramble[i].charAt(0) == scramble[i-1].charAt(0)) {
+                i--;
+            }
+        }
+
+        String str = "";
+        for (String s : scramble) {
+            str += s + " ";
+        }
+
+        return str;
     }
 }
