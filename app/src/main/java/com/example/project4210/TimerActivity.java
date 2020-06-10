@@ -28,7 +28,8 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
 
         tv_scramble = findViewById(R.id.tv_scramble);
-        tv_scramble.setText(generateScramble(20));
+        //tv_scramble.setText(generateScramble(20));
+        tv_scramble.setText(createScramble(20));
 
         chronometer_timer = findViewById(R.id.chronometer_timer);
 
@@ -62,5 +63,23 @@ public class TimerActivity extends AppCompatActivity {
         }
 
         return scramble;
+    }
+
+    private String createScramble(int len) {
+        String[] scramble = new String[len];
+        for (int i = 0; i < len; i++) {
+            int rand = (int)(Math.random() * rotations.length);
+            scramble[i] = rotations[rand];
+            if (i > 0 && scramble[i].charAt(0) == scramble[i-1].charAt(0)) {
+                i--;
+            }
+        }
+
+        String str = "";
+        for (String s : scramble) {
+            str += s + " ";
+        }
+
+        return str;
     }
 }

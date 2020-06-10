@@ -1,5 +1,7 @@
 package com.example.project4210.models;
 
+// SQLite
+
 public class RecordModel {
 
     private float time;

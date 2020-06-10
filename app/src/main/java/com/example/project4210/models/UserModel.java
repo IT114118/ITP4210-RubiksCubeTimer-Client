@@ -1,5 +1,7 @@
 package com.example.project4210.models;
 
+// Mysql
+
 public class UserModel {
 
     private int id;

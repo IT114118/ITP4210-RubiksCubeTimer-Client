@@ -1,5 +1,7 @@
 package com.example.project4210.models;
 
+
+
 public class AlgorithmModel {
 
     //e.g. oll_1, pll_12
