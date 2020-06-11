@@ -26,8 +26,6 @@ public class TimerActivity extends AppCompatActivity {
 
     private Chronometer chronometer_timer;
 
-    private Timer timer;
-
     private Button btn_test;
 
     @Override
