@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
@@ -27,20 +28,31 @@ public class TimerActivity extends AppCompatActivity {
 
     private Timer timer;
 
+    private Button btn_test;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
+        btn_test = findViewById(R.id.btn_test);
         tv_scramble = findViewById(R.id.tv_scramble);
         //tv_scramble.setText(generateScramble(20));
         tv_scramble.setText(createScramble(20));
 
         chronometer_timer = findViewById(R.id.chronometer_timer);
 
+        //計時器測試buttom
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startChronometer();
+            }
+        });
+
     }
 
-    //計時器, 未試
+    //有bug, 但可使用
     private void startChronometer(){
         chronometer_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
             @Override
