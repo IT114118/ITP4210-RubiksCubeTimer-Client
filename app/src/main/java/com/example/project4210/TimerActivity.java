@@ -2,11 +2,13 @@ package com.example.project4210;
 
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -26,25 +28,34 @@ public class TimerActivity extends AppCompatActivity {
 
     private Chronometer chronometer_timer;
 
-    private Button btn_test;
+    private boolean chronometer_static = false;
+
+
+    private ConstraintLayout layout_timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        btn_test = findViewById(R.id.btn_test);
+        layout_timer = findViewById(R.id.layout_timer);
         tv_scramble = findViewById(R.id.tv_scramble);
         //tv_scramble.setText(generateScramble(20));
         tv_scramble.setText(createScramble(20));
 
         chronometer_timer = findViewById(R.id.chronometer_timer);
 
-        //計時器測試buttom
-        btn_test.setOnClickListener(new View.OnClickListener() {
+
+        layout_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startChronometer();
+                if (chronometer_static == false){
+                    startChronometer();
+                    chronometer_static = true;
+                } else if(chronometer_static == true){
+                    chronometer_static = false;
+                    chronometer_timer.stop();
+                }
             }
         });
 
