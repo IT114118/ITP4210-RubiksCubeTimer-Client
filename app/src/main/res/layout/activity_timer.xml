@@ -67,4 +67,14 @@
 
     </LinearLayout>
 
+    <TextView
+        <!--test_textview-->
+        ndroid:id="@+id/testTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/chronometer_timer"
+        tools:layout_editor_absoluteX="155dp"
+        tools:ignore="MissingConstraints" />
+
 </android.support.constraint.ConstraintLayout>
