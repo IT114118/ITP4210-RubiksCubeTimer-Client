@@ -52,7 +52,6 @@ public class TimerActivity extends AppCompatActivity {
 
     }
 
-    //有bug, 但可使用
     private void startChronometer(){
         chronometer_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
             @Override
@@ -61,17 +60,17 @@ public class TimerActivity extends AppCompatActivity {
                 int h   = (int)(time /3600000);
                 int m = (int)(time - h*3600000)/60000;
                 int s= (int)(time - h*3600000- m*60000)/1000 ;
-                int mill = (int)(time - h*3600000- m*60000- s);
+                int mill = (int)(time%1000);
                 String mm = m < 10 ? "0"+m: m+"";
                 String ss = s < 10 ? "0"+s: s+"";
                 String millstring = null;
-                if (mill < 1000){
-                    millstring = "0"+ mill;
-                } else if(mill < 100){
-                    millstring = "00"+ mill;
-                }else if (mill < 10){
+                if (mill < 10){
                     millstring = "000"+ mill;
-                } else {
+                }else if(mill < 100){
+                    millstring = "00"+ mill;
+                }else if (mill < 1000){
+                    millstring = "0"+ mill;
+                }else {
                     millstring= mill+"";
                 }
                 cArg.setText(mm+":"+ss+ ":"+ millstring);
