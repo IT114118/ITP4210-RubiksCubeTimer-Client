@@ -20,7 +20,7 @@
 
     <Chronometer
         android:id="@+id/chronometer_timer"
-        android:format="00:00:00"
+        android:format="00:00:0000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="75sp"
