@@ -8,6 +8,7 @@ public class UserModel {
     private String name;
     private String password;
 
+    private int numberOfSolve;
     private float personalBest;
     private float ao5;
     private float ao12;
@@ -25,6 +26,7 @@ public class UserModel {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", numberOfSolve=" + numberOfSolve +
                 ", personalBest=" + personalBest +
                 ", ao5=" + ao5 +
                 ", ao12=" + ao12 +
@@ -54,6 +56,14 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getNumberOfSolve() {
+        return numberOfSolve;
+    }
+
+    public void setNumberOfSolve(int numberOfSolve) {
+        this.numberOfSolve = numberOfSolve;
     }
 
     public float getPersonalBest() {
