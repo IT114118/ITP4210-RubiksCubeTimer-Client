@@ -8,6 +8,7 @@ public class UserModel {
     private String name;
     private String password;
 
+    private int globalRank;
     private int numberOfSolve;
     private float personalBest;
     private float ao5;
@@ -26,6 +27,7 @@ public class UserModel {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", globalRank=" + globalRank +
                 ", numberOfSolve=" + numberOfSolve +
                 ", personalBest=" + personalBest +
                 ", ao5=" + ao5 +
@@ -96,5 +98,13 @@ public class UserModel {
 
     public void setAverage(float average) {
         this.average = average;
+    }
+
+    public int getGlobalRank() {
+        return globalRank;
+    }
+
+    public void setGlobalRank(int globalRank) {
+        this.globalRank = globalRank;
     }
 }
