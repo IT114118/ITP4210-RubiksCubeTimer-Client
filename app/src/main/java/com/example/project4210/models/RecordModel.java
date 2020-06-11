@@ -4,6 +4,7 @@ package com.example.project4210.models;
 
 public class RecordModel {
 
+    private int id;
     private float time;
     private String scramble;
     private boolean isStarred;
@@ -17,10 +18,19 @@ public class RecordModel {
     @Override
     public String toString() {
         return "RecordModel{" +
-                "time=" + time +
+                "id=" + id +
+                ", time=" + time +
                 ", scramble='" + scramble + '\'' +
                 ", isStarred=" + isStarred +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public float getTime() {

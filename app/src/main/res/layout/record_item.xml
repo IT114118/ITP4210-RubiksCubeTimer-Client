@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="Times: "/>
+
+            <TextView android:id="@+id/textView_Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="30.00"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scramble: "/>
+
+            <TextView android:id="@+id/textView_Scramble"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R U F R U F R U F R U F R U F R U F"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <CheckBox android:id="@+id/checkBox_Star"
+        android:button="@android:drawable/btn_star"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent" />
+</LinearLayout>

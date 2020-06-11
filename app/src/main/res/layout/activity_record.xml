@@ -94,19 +94,36 @@
     <LinearLayout
         android:id="@+id/linearLayout_recordList"
         android:layout_margin="15dp"
-        android:padding="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:text="Records"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <TextView
+                android:text="Records"
+                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView android:id="@+id/textView_DeleteAllRecords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff0000"
+                android:text="Delete All Records"
+                android:onClick="textView_DeleteAllRecords_OnClick"/>
+
+        </LinearLayout>
+
+        <ListView android:id="@+id/listView_Records"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -145,5 +162,4 @@
             android:text="settings" />
 
     </LinearLayout>
-
 </LinearLayout>
