@@ -40,14 +40,14 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean checkUserName(String username) {
-        if (username.length() >= 2) {
+        if (username.length() >= 2  && username.length() <= 20) {
             //TODO Check username on web server if it is available
 
             //TODO please include errorString;
             errorString = "Username has been Used";
             return false;
         } else {
-            errorString = "Username too short";
+            errorString = "Username too short or too long";
             return false;
         }
     }

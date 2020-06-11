@@ -13,7 +13,7 @@ import com.example.project4210.models.UserModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_timer, btn_Settings, btn_algorithm, btn_record, btn_login;
+    Button btn_timer, btn_Settings, btn_algorithm, btn_record;
     TextView tv_username, tv_rank, tv_personalBest, tv_average, tv_recentPerformance;
     UserModel user;
 
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         btn_record = findViewById(R.id.btn_record);
         btn_algorithm = findViewById(R.id.btn_algorithm);
         btn_Settings = findViewById(R.id.btn_settings);
-        btn_login = findViewById(R.id.btn_login);
 
         btn_timer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,14 +44,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, RecordActivity.class);
-                startActivity(i);
-            }
-        });
-
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, UserActivity.class);
                 startActivity(i);
             }
         });
