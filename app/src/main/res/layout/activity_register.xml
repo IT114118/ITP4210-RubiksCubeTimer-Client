@@ -7,12 +7,12 @@
     tools:context=".RegisterActivity">
 
     <Button
-        android:id="@+id/btn_signin2"
+        android:id="@+id/btn_signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="#4BA5EC"
-        android:text="Sign In"
+        android:text="Sign Up"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -24,12 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Don't have any account? Sign up here"
+        android:text="Have any account? Sign in here!"
         android:textColor="#3D92E7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_signin2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_signUp" />
 
     <TextView
         android:id="@+id/textView"
