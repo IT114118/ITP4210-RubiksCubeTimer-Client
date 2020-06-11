@@ -1,5 +1,6 @@
 package com.example.project4210;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +46,9 @@ public class UserActivity extends AppCompatActivity {
             tv_signup_intent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO redirect with intent to activity_register
+                    //redirect with intent to activity_register
+                    Intent intent = new Intent(UserActivity.this, RegisterActivity.class);
+                    startActivity(intent);
                 }
             });
         }

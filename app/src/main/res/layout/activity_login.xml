@@ -59,6 +59,7 @@
         android:layout_marginTop="24dp"
         android:background="#4BA5EC"
         android:text="Sign In"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
