@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
@@ -25,22 +26,30 @@ public class TimerActivity extends AppCompatActivity {
 
     private Chronometer chronometer_timer;
 
-    private Timer timer;
+    private Button btn_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
+        btn_test = findViewById(R.id.btn_test);
         tv_scramble = findViewById(R.id.tv_scramble);
         //tv_scramble.setText(generateScramble(20));
         tv_scramble.setText(createScramble(20));
 
         chronometer_timer = findViewById(R.id.chronometer_timer);
 
+        //計時器測試buttom
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startChronometer();
+            }
+        });
+
     }
 
-    //計時器, 未試
     private void startChronometer(){
         chronometer_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
             @Override
@@ -49,17 +58,17 @@ public class TimerActivity extends AppCompatActivity {
                 int h   = (int)(time /3600000);
                 int m = (int)(time - h*3600000)/60000;
                 int s= (int)(time - h*3600000- m*60000)/1000 ;
-                int mill = (int)(time - h*3600000- m*60000- s);
+                int mill = (int)(time%1000);
                 String mm = m < 10 ? "0"+m: m+"";
                 String ss = s < 10 ? "0"+s: s+"";
                 String millstring = null;
-                if (mill < 1000){
-                    millstring = "0"+ mill;
-                } else if(mill < 100){
-                    millstring = "00"+ mill;
-                }else if (mill < 10){
+                if (mill < 10){
                     millstring = "000"+ mill;
-                } else {
+                }else if(mill < 100){
+                    millstring = "00"+ mill;
+                }else if (mill < 1000){
+                    millstring = "0"+ mill;
+                }else {
                     millstring= mill+"";
                 }
                 cArg.setText(mm+":"+ss+ ":"+ millstring);
