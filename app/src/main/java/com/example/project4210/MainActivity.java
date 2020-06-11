@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn_timer, btn_Settings, btn_algorithm, btn_record, btn_login;
+    TextView et_username, et_rank, et_personalBest, et_avg, et_recentPerformance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        et_username = findViewById(R.id.et_username);
+        //et_rank = findViewById(R.id.et_rank);
+        et_username = findViewById(R.id.et_username);
+        et_username = findViewById(R.id.et_username);
 
     }
 }
