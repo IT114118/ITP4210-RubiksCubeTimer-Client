@@ -18,6 +18,7 @@ import java.util.TimerTask;
 
 public class TimerActivity extends AppCompatActivity {
 
+    private static Chronometer chronometer_timer;
     private String[] rotations = {
             "U","D","R","L","F","B",
             "U'","D'","R'","L'","F'", "B'",
@@ -25,10 +26,13 @@ public class TimerActivity extends AppCompatActivity {
     };
 
     private TextView tv_scramble;
+    private TextView timeTv;
 
-    private Chronometer chronometer_timer;
+    private String time;
 
     private boolean chronometer_static = false;
+    static Handler timeHandler = new Handler();
+    private int counttime;
 
 
     private ConstraintLayout layout_timer;
@@ -42,26 +46,48 @@ public class TimerActivity extends AppCompatActivity {
         tv_scramble = findViewById(R.id.tv_scramble);
         //tv_scramble.setText(generateScramble(20));
         tv_scramble.setText(createScramble(20));
+        timeTv= findViewById(R.id.testTv);
+        final Handler handler=  new Handler();
+
 
         chronometer_timer = findViewById(R.id.chronometer_timer);
 
-
+//NOT FINISH
         layout_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                timeTv.setText("00"+":"+"00"+ ":"+ "00");
+                Runnable r = new Runnable() {
+                    public void run() {
+                        counttime += 1;
+                        int mill = counttime%100;
+                        int s = counttime/100;
+                        int min = s/60;
+                        int millstring = mill;
+                        int ss = s - min*60;
+                        int mm = min;
+                        time = mm+":"+ss+ ":"+ millstring;
+                        timeTv.setText(time);
+                        handler.postDelayed(this,1);
+                    }
+                };
+
                 if (chronometer_static == false){
-                    startChronometer();
+                    handler.postDelayed(r,1);
                     chronometer_static = true;
+
                 } else if(chronometer_static == true){
+                    handler.removeCallbacks(r);
                     chronometer_static = false;
-                    chronometer_timer.stop();
                 }
             }
         });
 
+
+
     }
 
-    private void startChronometer(){
+    private static void startChronometer(){
         chronometer_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
             @Override
             public void onChronometerTick(Chronometer cArg) {
