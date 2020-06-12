@@ -72,7 +72,7 @@ public class TimerActivity extends AppCompatActivity {
                 get_mill = mill;
                 time = mm+":"+ss+ ":"+ millstring;
                 chronometer_timer.setText(time);
-                handler.postDelayed(this,1);
+                handler.postDelayed(this,0);
             }
         };
 
@@ -82,7 +82,7 @@ public class TimerActivity extends AppCompatActivity {
 
                 if (chronometer_static == false){
                     counttime = 0;
-                    handler.postDelayed(r,1);
+                    handler.postDelayed(r,0);
                     chronometer_static = true;
 
                 } else if(chronometer_static == true){
