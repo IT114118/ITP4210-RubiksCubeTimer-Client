@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project4210.handler.UserHandler;
+
 public class UserActivity extends AppCompatActivity {
 
     //id for activity_user
@@ -59,13 +61,21 @@ public class UserActivity extends AppCompatActivity {
         //TODO Get Username from local database or sharedPreference,
         // and pass to web server to check if user exist,
         // if yes, return true
+
+        // Check Token - Will make it later
+
         return false;
     }
 
 
     private boolean signInUser(String username, String password) {
-        //TODO Get username and password and send to web server for logging in new existing user,
-        // return true if success.
-        return false;
+        // Get username and password and send to web server for logging in new existing user
+        UserHandler userHandler = new UserHandler();
+        boolean success = userHandler.login(username, password);
+        if (!success) {
+            String error = userHandler.getError();
+            Toast.makeText(UserActivity.this, error, Toast.LENGTH_SHORT).show();
+        }
+        return success;
     }
 }

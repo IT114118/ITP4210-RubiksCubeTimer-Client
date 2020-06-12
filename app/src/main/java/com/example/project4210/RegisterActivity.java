@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.project4210.handler.UserHandler;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_username, et_password, et_confirmPassword;
@@ -31,9 +33,12 @@ public class RegisterActivity extends AppCompatActivity {
                     boolean result = registerUser(et_username.getText().toString(), et_password.getText().toString());
                     if (result) {
                         Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+
+                        // TODO: Auto login?
+                        // ...
                     }
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Please Check " + errorString, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, errorString, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -41,11 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean checkUserName(String username) {
         if (username.length() >= 2  && username.length() <= 20) {
-            //TODO Check username on web server if it is available
-
-            //TODO please include errorString;
-            errorString = "Username has been Used";
-            return false;
+            return true;
         } else {
             errorString = "Username too short or too long";
             return false;
@@ -53,18 +54,22 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean checkPassword(String password, String confirmPassword) {
-
-        if (password == confirmPassword) {
+        if (password.equals(confirmPassword)) {
             return true;
         } else {
-            errorString = "Password, Incorrect Password";
+            errorString = "Those passwords didn't match. Please try again";
             return false;
         }
     }
 
     private boolean registerUser(String username, String password) {
-        //TODO Get username and password and send to web server for creating new user,
-        // return true if success.
-        return false;
+        // Get username and password and send to web server for creating new user,
+        UserHandler userHandler = new UserHandler();
+        boolean success = userHandler.signup(username, password);
+        if (!success) {
+            String error = userHandler.getError();
+            Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
+        }
+        return success;
     }
 }
