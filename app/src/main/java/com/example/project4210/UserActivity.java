@@ -1,6 +1,7 @@
 package com.example.project4210;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -62,7 +63,12 @@ public class UserActivity extends AppCompatActivity {
         // and pass to web server to check if user exist,
         // if yes, return true
 
-        // Check Token - Will make it later
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+        String token = pref.getString("token", null);
+
+        // Check is the token valid
+
+        // if valid => { get global rank etc.. return true } .. sleeply.. later make...
 
         return false;
     }
@@ -71,11 +77,12 @@ public class UserActivity extends AppCompatActivity {
     private boolean signInUser(String username, String password) {
         // Get username and password and send to web server for logging in new existing user
         UserHandler userHandler = new UserHandler();
-        boolean success = userHandler.login(username, password);
-        if (!success) {
-            String error = userHandler.getError();
-            Toast.makeText(UserActivity.this, error, Toast.LENGTH_SHORT).show();
+        if (userHandler.login(username, password)) {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+            pref.edit().putString("token", userHandler.getToken()).apply();
+            return true;
         }
-        return success;
+        Toast.makeText(UserActivity.this, userHandler.getError(), Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

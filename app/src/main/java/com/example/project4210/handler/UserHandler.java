@@ -22,7 +22,7 @@ public class UserHandler {
                     try {
                         JSONObject json = new JSONObject(handler.getReturnJson());
                         if (String.valueOf(json.get("status")).equals("success")) {
-                            saveToken(String.valueOf(json.get("token")));
+                            token = String.valueOf(json.get("token"));
                             return true;
                         }
                     } catch (JSONException e) {
@@ -58,7 +58,7 @@ public class UserHandler {
                     try {
                         JSONObject json = new JSONObject(handler.getReturnJson());
                         if (String.valueOf(json.get("status")).equals("success")) {
-                            saveToken(String.valueOf(json.get("token")));
+                            token = String.valueOf(json.get("token"));
                             return true;
                         }
                     } catch (JSONException e) {
@@ -86,10 +86,7 @@ public class UserHandler {
         return error;
     }
 
-    private void saveToken(String token) {
-        this.token = token;
-
-        // Save to local db
-        //...
+    public String getToken() {
+        return token;
     }
 }

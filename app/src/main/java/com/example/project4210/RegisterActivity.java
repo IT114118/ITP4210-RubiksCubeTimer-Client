@@ -1,5 +1,6 @@
 package com.example.project4210;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -65,11 +66,12 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean registerUser(String username, String password) {
         // Get username and password and send to web server for creating new user,
         UserHandler userHandler = new UserHandler();
-        boolean success = userHandler.signup(username, password);
-        if (!success) {
-            String error = userHandler.getError();
-            Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_SHORT).show();
+        if (userHandler.signup(username, password)) {
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+            pref.edit().putString("token", userHandler.getToken()).apply();
+            return true;
         }
-        return success;
+        Toast.makeText(RegisterActivity.this, userHandler.getError(), Toast.LENGTH_SHORT).show();
+        return false;
     }
 }
