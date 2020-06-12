@@ -52,5 +52,6 @@
         android:button="@android:drawable/btn_star"
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent"
+        android:visibility="gone"/>
 </LinearLayout>

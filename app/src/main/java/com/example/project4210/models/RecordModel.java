@@ -9,6 +9,12 @@ public class RecordModel {
     private String scramble;
     private boolean isStarred;
 
+    public RecordModel(float time, String scramble) {
+        this.time = time;
+        this.scramble = scramble;
+        this.isStarred = false;
+    }
+
     public RecordModel(float time, String scramble, boolean isStarred) {
         this.time = time;
         this.scramble = scramble;
