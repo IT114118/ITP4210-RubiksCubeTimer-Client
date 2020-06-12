@@ -31,9 +31,6 @@ public class RecordActivity extends AppCompatActivity {
 
         recordHandler = new RecordHandler(this);
         records = recordHandler.getAllRecords();
-        recordHandler.addRecord(new RecordModel(30.0f, "R U F", true));
-        recordHandler.addRecord(new RecordModel(40.0f, "R F F", false));
-        recordHandler.addRecord(new RecordModel(50.0f, "R B F", false));
 
         listView = findViewById(R.id.listView_Records);
         listView.setAdapter(new RecordAdapter(this, recordHandler.getAllRecords()));
