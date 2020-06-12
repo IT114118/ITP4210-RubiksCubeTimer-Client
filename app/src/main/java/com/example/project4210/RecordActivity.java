@@ -61,26 +61,26 @@ public class RecordActivity extends AppCompatActivity {
 
     public void generateStatistics() {
         records = recordHandler.getAllRecords();
-        tv_stats_best.setText(String.valueOf(getPersonalBest()));
-        tv_stats_ao5.setText(String.valueOf(getAo5()));
-        tv_stats_ao12.setText(String.valueOf(getAo12()));
-        tv_stats_average.setText(String.valueOf(getAverage()));
+        tv_stats_best.setText(getStatisticsString(getPersonalBest()));
+        tv_stats_ao5.setText(getStatisticsString(getAo5()));
+        tv_stats_ao12.setText(getStatisticsString(getAo12()));
+        tv_stats_average.setText(getStatisticsString(getAverage()));
     }
 
     public float getPersonalBest() {
-        return (records.size() <= 0) ? 0 : getRecordTimeSortedArray()[0];
+        return (records.size() <= 0) ? -1 : getRecordTimeSortedArray()[0];
     }
 
     public float getAo5() {
-        return (records.size() < 5) ? 0 : getAverageInRange(5);
+        return (records.size() < 5) ? -1 : getAverageInRange(5);
     }
 
     public float getAo12() {
-        return (records.size() < 12) ? 0 : getAverageInRange(12);
+        return (records.size() < 12) ? -1 : getAverageInRange(12);
     }
 
     public float getAverage() {
-        return (records.size() <= 0) ? 0 : getAverageInRange(records.size());
+        return (records.size() <= 0) ? -1 : getAverageInRange(records.size());
     }
 
     private float[] getRecordTimeSortedArray() {
@@ -100,5 +100,9 @@ public class RecordActivity extends AppCompatActivity {
             sum += time;
         }
         return sum / firstN;
+    }
+
+    private String getStatisticsString(float num) {
+        return (num == -1) ? "-" : String.valueOf(num);
     }
 }
