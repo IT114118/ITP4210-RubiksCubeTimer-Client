@@ -34,9 +34,9 @@ public class RecordHandler extends SQLiteOpenHelper {
 
     /// Add a record to database, return its row id, if fails to add return -1
     /// Example:
-    // recordHandler.addRecord(new RecordModel(30.0f, "R U F", true));
-    // recordHandler.addRecord(new RecordModel(40.0f, "R F F", false));
-    // recordHandler.addRecord(new RecordModel(50.0f, "R B F", false));
+    // recordHandler.addRecord(new RecordModel(30.0f, "R U F"));
+    // recordHandler.addRecord(new RecordModel(40.0f, "R F F"));
+    // recordHandler.addRecord(new RecordModel(50.0f, "R B F"));
     public int addRecord(RecordModel recordModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
