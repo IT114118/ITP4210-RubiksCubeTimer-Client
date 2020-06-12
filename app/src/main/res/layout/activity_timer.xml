@@ -67,6 +67,5 @@
 
     </LinearLayout>
 
-    <!--test textview-->
 
 </android.support.constraint.ConstraintLayout>

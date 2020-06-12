@@ -30,10 +30,12 @@ public class TimerActivity extends AppCompatActivity {
     private String time;
     static Handler timeHandler = new Handler();
     private int counttime;
-
+    private float get_time;
 
     private ConstraintLayout layout_timer;
     private boolean chronometer_static = false;
+    private int get_mm, get_ss, get_mill;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,9 @@ public class TimerActivity extends AppCompatActivity {
                 int millstring = mill;
                 int ss = s - min*60;
                 int mm = min;
+                get_mm = mm;
+                get_ss = ss;
+                get_mill = mill;
                 time = mm+":"+ss+ ":"+ millstring;
                 chronometer_timer.setText(time);
                 handler.postDelayed(this,1);
@@ -75,6 +80,7 @@ public class TimerActivity extends AppCompatActivity {
 
                 } else if(chronometer_static == true){
                     handler.removeCallbacks(r);
+                    get_time = get_mm*60 + get_ss + (get_mill/100);
                     chronometer_static = false;
                 }
             }
