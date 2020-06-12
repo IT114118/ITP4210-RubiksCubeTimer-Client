@@ -18,7 +18,7 @@ import java.util.TimerTask;
 
 public class TimerActivity extends AppCompatActivity {
 
-    private static Chronometer chronometer_timer;
+    private static TextView chronometer_timer;
     private String[] rotations = {
             "U","D","R","L","F","B",
             "U'","D'","R'","L'","F'", "B'",
@@ -26,16 +26,14 @@ public class TimerActivity extends AppCompatActivity {
     };
 
     private TextView tv_scramble;
-    private TextView timeTv;
 
     private String time;
-
-    private boolean chronometer_static = false;
     static Handler timeHandler = new Handler();
     private int counttime;
 
 
     private ConstraintLayout layout_timer;
+    private boolean chronometer_static = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,33 +44,32 @@ public class TimerActivity extends AppCompatActivity {
         tv_scramble = findViewById(R.id.tv_scramble);
         //tv_scramble.setText(generateScramble(20));
         tv_scramble.setText(createScramble(20));
-        timeTv= findViewById(R.id.testTv);
         final Handler handler=  new Handler();
 
 
         chronometer_timer = findViewById(R.id.chronometer_timer);
 
-//NOT FINISH
+        final Runnable r = new Runnable() {
+            public void run() {
+                counttime += 1;
+                int mill = counttime%100;
+                int s = counttime/100;
+                int min = s/60;
+                int millstring = mill;
+                int ss = s - min*60;
+                int mm = min;
+                time = mm+":"+ss+ ":"+ millstring;
+                chronometer_timer.setText(time);
+                handler.postDelayed(this,1);
+            }
+        };
+
         layout_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timeTv.setText("00"+":"+"00"+ ":"+ "00");
-                Runnable r = new Runnable() {
-                    public void run() {
-                        counttime += 1;
-                        int mill = counttime%100;
-                        int s = counttime/100;
-                        int min = s/60;
-                        int millstring = mill;
-                        int ss = s - min*60;
-                        int mm = min;
-                        time = mm+":"+ss+ ":"+ millstring;
-                        timeTv.setText(time);
-                        handler.postDelayed(this,1);
-                    }
-                };
 
                 if (chronometer_static == false){
+                    chronometer_timer.setText("00:00:00");
                     handler.postDelayed(r,1);
                     chronometer_static = true;
 
@@ -84,35 +81,6 @@ public class TimerActivity extends AppCompatActivity {
         });
 
 
-
-    }
-
-    private static void startChronometer(){
-        chronometer_timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
-            @Override
-            public void onChronometerTick(Chronometer cArg) {
-                long time = SystemClock.elapsedRealtime() - cArg.getBase();
-                int h   = (int)(time /3600000);
-                int m = (int)(time - h*3600000)/60000;
-                int s= (int)(time - h*3600000- m*60000)/1000 ;
-                int mill = (int)(time%1000);
-                String mm = m < 10 ? "0"+m: m+"";
-                String ss = s < 10 ? "0"+s: s+"";
-                String millstring = null;
-                if (mill < 10){
-                    millstring = "000"+ mill;
-                }else if(mill < 100){
-                    millstring = "00"+ mill;
-                }else if (mill < 1000){
-                    millstring = "0"+ mill;
-                }else {
-                    millstring= mill+"";
-                }
-                cArg.setText(mm+":"+ss+ ":"+ millstring);
-            }
-        });
-        chronometer_timer.setBase(SystemClock.elapsedRealtime());
-        chronometer_timer.start();
 
     }
 

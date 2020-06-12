@@ -19,9 +19,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Chronometer
+   <TextView
         android:id="@+id/chronometer_timer"
-        android:format="00:00:0000"
+       android:text="00:00:00"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="75sp"
@@ -67,14 +67,6 @@
 
     </LinearLayout>
 
-    <TextView
-        <!--test_textview-->
-        ndroid:id="@+id/testTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer_timer"
-        tools:layout_editor_absoluteX="155dp"
-        tools:ignore="MissingConstraints" />
+    <!--test textview-->
 
 </android.support.constraint.ConstraintLayout>
