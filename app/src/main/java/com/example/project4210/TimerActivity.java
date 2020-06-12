@@ -61,16 +61,16 @@ public class TimerActivity extends AppCompatActivity {
         final Runnable r = new Runnable() {
             public void run() {
                 counttime += 1;
-                int mill = counttime % 100;
-                int s = counttime / 60;
-                int min = s / 30;
+                int mill = counttime%100;
+                int s = counttime/100;
+                int min = s/60;
                 int millstring = mill;
-                int ss = s - min * 60;
                 int mm = min;
+                int ss = s - min*60;
                 get_mm = mm;
                 get_ss = ss;
                 get_mill = mill;
-                time = mm + ":" + ss + ":" + millstring;
+                time = mm+":"+ss+ ":"+ millstring;
                 chronometer_timer.setText(time);
                 handler.postDelayed(this,1);
             }
@@ -87,13 +87,17 @@ public class TimerActivity extends AppCompatActivity {
 
                 } else if(chronometer_static == true){
                     handler.removeCallbacks(r);
-                    get_time = (float)(get_mm*60 + get_ss + ((float)get_mill/100));
+                    get_time =(float)(get_mm*60 + get_ss + ((float)get_mill/100));
                     chronometer_static = false;
                     alertSaveRecord();
                 }
             }
         });
+
+
+
     }
+
 
     //function to generate a Rubik's cube scramble without duplicating or useless steps
     private String generateScramble(int length){
@@ -130,10 +134,7 @@ public class TimerActivity extends AppCompatActivity {
         for (int i = 0; i < len; i++) {
             int rand = (int)(Math.random() * rotations.length);
             scramble[i] = rotations[rand];
-            if (i > 0 && (scramble[i].charAt(0) == scramble[i-1].charAt(0))) {
-                i--;
-
-            } else if (i > 1  && (scramble[i].charAt(0) == scramble[i-2].charAt(0))) {
+            if (i > 0 && scramble[i].charAt(0) == scramble[i-1].charAt(0)) {
                 i--;
             }
         }
@@ -145,6 +146,7 @@ public class TimerActivity extends AppCompatActivity {
 
         return str;
     }
+
 
     private void alertSaveRecord() {
         //create new Alert
