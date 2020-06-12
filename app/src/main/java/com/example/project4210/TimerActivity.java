@@ -130,7 +130,10 @@ public class TimerActivity extends AppCompatActivity {
         for (int i = 0; i < len; i++) {
             int rand = (int)(Math.random() * rotations.length);
             scramble[i] = rotations[rand];
-            if (i > 0 && scramble[i].charAt(0) == scramble[i-1].charAt(0)) {
+            if (i > 0 && (scramble[i].charAt(0) == scramble[i-1].charAt(0))) {
+                i--;
+
+            } else if (i > 1  && (scramble[i].charAt(0) == scramble[i-2].charAt(0))) {
                 i--;
             }
         }
