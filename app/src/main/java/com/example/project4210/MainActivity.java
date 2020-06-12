@@ -105,12 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
+        alert.setNegativeButton("No", null);
         //show Alert
         alert.create().show();
     }

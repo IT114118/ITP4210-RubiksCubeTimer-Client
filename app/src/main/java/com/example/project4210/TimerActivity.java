@@ -1,8 +1,10 @@
 package com.example.project4210;
 
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +12,9 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.project4210.handler.RecordHandler;
+import com.example.project4210.models.RecordModel;
 
 import java.util.Locale;
 import java.util.Random;
@@ -26,6 +31,7 @@ public class TimerActivity extends AppCompatActivity {
     };
 
     private TextView tv_scramble;
+    private String scramble;
 
     private String time;
     static Handler timeHandler = new Handler();
@@ -45,8 +51,9 @@ public class TimerActivity extends AppCompatActivity {
         layout_timer = findViewById(R.id.layout_timer);
         tv_scramble = findViewById(R.id.tv_scramble);
         //tv_scramble.setText(generateScramble(20));
-        tv_scramble.setText(createScramble(20));
-        final Handler handler=  new Handler();
+        scramble = createScramble(20);
+        tv_scramble.setText(scramble);
+        final Handler handler =  new Handler();
 
 
         chronometer_timer = findViewById(R.id.chronometer_timer);
@@ -74,14 +81,15 @@ public class TimerActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (chronometer_static == false){
-                    chronometer_timer.setText("00:00:00");
+                    counttime = 0;
                     handler.postDelayed(r,1);
                     chronometer_static = true;
 
                 } else if(chronometer_static == true){
                     handler.removeCallbacks(r);
-                    get_time = get_mm*60 + get_ss + (get_mill/100);
+                    get_time =(float)(get_mm*60 + get_ss + ((float)get_mill/100));
                     chronometer_static = false;
+                    alertSaveRecord();
                 }
             }
         });
@@ -140,4 +148,26 @@ public class TimerActivity extends AppCompatActivity {
     }
 
 
+    private void alertSaveRecord() {
+        //create new Alert
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        //set alert properties
+        alert.setTitle(String.valueOf(get_time));
+        alert.setMessage("Do you want to save this record?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                RecordHandler recordHandler = new RecordHandler(TimerActivity.this);
+                recordHandler.addRecord(new RecordModel(get_time, scramble, false));
+            }
+        });
+        alert.setNegativeButton("No, delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        //show Alert
+        alert.create().show();
+    }
 }
