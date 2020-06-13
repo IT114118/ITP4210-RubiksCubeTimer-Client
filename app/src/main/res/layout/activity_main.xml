@@ -6,11 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/main">
 
     <TextView
         android:id="@+id/textView3"
-        android:background="#4BA5EC"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -26,8 +26,6 @@
 
     <TextView
         android:id="@+id/tv_username"
-        android:background="#4BA5EC"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -43,7 +41,6 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:background="#4BA5EC"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
