@@ -73,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_Settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, LeaderboardActivity.class);
+                startActivity(i);
+            }
+        });
+
         tv_username = findViewById(R.id.tv_username);
         tv_rank = findViewById(R.id.tv_rank);
         tv_personalBest = findViewById(R.id.tv_personalBest);
