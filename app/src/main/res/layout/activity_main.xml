@@ -10,6 +10,7 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:background="#4BA5EC"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -25,6 +26,8 @@
 
     <TextView
         android:id="@+id/tv_username"
+        android:background="#4BA5EC"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -40,6 +43,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
+        android:background="#4BA5EC"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
@@ -139,19 +143,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_timer"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
+                android:background="@drawable/rectangle_1"
+                android:src="@drawable/timer"
+                android:scaleType="centerCrop"
+                android:padding="20dp"
                 android:text="Timer" />
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_algorithm"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
+                android:background="@drawable/rectangle_1"
+                android:src="@drawable/cube"
+                android:scaleType="centerCrop"
+                android:padding="20dp"
                 android:text="Algorithm" />
 
         </TableRow>
@@ -160,18 +172,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_record"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
+                android:background="@drawable/rectangle_1"
+                android:src="@drawable/list"
+                android:scaleType="centerCrop"
+                android:padding="20dp"
                 android:text="Record" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_settings"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
+                android:background="@drawable/rectangle_1"
+                android:src="@drawable/settings"
+                android:scaleType="centerCrop"
+                android:padding="20dp"
                 android:text="Settings" />
 
         </TableRow>

@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.project4210.models.UserModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn_timer, btn_Settings, btn_algorithm, btn_record;
+    ImageButton  btn_timer, btn_Settings, btn_algorithm, btn_record;
     TextView tv_username, tv_rank, tv_personalBest, tv_average, tv_recentPerformance;
     UserModel user;
 
