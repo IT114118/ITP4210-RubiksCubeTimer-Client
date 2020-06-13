@@ -9,10 +9,6 @@ public class UserHandler {
     private final String USBWebServerIP = "10.0.0.18";
     private String token, error;
 
-    public UserHandler() {
-
-    }
-
     public boolean login(String username, String password) {
         try {
             String postParams = "username=" + username + "&password=" + password;
@@ -112,6 +108,37 @@ public class UserHandler {
         }
         error = "Fail to connect to the server";
         return false;
+    }
+
+    public int getGlobalRank(String username, String token, float record) {
+        try {
+            String postParams = "username=" + username + "&token=" + token + "&record=" + record;
+            HttpURLHandler handler = new HttpURLHandler("http://" + USBWebServerIP + ":8080/api/get_global_rank.php", postParams);
+            switch (handler.getResponseCode()) {
+                case 200:
+                    try {
+                        JSONObject json = new JSONObject(handler.getReturnJson());
+                        if (String.valueOf(json.get("status")).equals("success")) {
+                            return Integer.parseInt(json.get("rank").toString());
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                case 503:
+                case 504:
+                    error = "Session expired, please login again";
+                    return -1;
+                default: // 500, 502
+                    error = "Server error, please try again later";
+                    return -1;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        error = "Fail to connect to the server";
+        return -1;
     }
 
     public String getError() {

@@ -30,6 +30,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         linkID();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setUp();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
         setUp();
     }
 
@@ -115,8 +126,9 @@ public class MainActivity extends AppCompatActivity {
         userModel.setPersonalBest(RecordActivity.getPersonalBest(records));
         userModel.setAverage(RecordActivity.getAverage(records));
 
-        // TODO: Get Global Rank from Web server with token
-        userModel.setGlobalRank(100);
+        // Get Global Rank from Web server with token
+        UserHandler userHandler = new UserHandler();
+        userModel.setGlobalRank(userHandler.getGlobalRank(username, token, userModel.getAverage()));
 
         return userModel;
     }
@@ -127,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
             tv_username.setText(user.getUsername());
             tv_personalBest.setText(RecordActivity.getDisplay(user.getPersonalBest()));
             tv_average.setText(RecordActivity.getDisplay(user.getAverage()));
-            tv_rank.setText(String.valueOf(user.getGlobalRank()));
+            int rank = user.getGlobalRank();
+            tv_rank.setText((rank <= 0) ? "-" : String.valueOf(rank));
         } else {
             alertLogin();
         }
@@ -150,4 +163,6 @@ public class MainActivity extends AppCompatActivity {
         //show Alert
         alert.create().show();
     }
+
+
 }
