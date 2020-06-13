@@ -2,6 +2,7 @@ package com.example.project4210;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.project4210.handler.RecordHandler;
+import com.example.project4210.handler.UserHandler;
+import com.example.project4210.models.RecordModel;
 import com.example.project4210.models.UserModel;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,38 +69,71 @@ public class MainActivity extends AppCompatActivity {
         tv_personalBest = findViewById(R.id.tv_personalBest);
         tv_average = findViewById(R.id.tv_average);
         tv_recentPerformance = findViewById(R.id.tv_rank);
-
     }
 
-    private boolean checkUserLogin () {
-        //TODO Get Username from local database or sharedPreference,
-        // and pass to web server to check if user exist,
-        // if yes, return true
+    // TODO: Create a button or something to logout
+    private void logout() {
+        // Clear SharedPreferences Account Data
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+        pref.edit().remove("username").apply();
+        pref.edit().remove("token").apply();
+    }
+
+    private boolean checkUserLogin() {
+        // Get username and token from SharedPreferences
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+        String username = pref.getString("username", null);
+        String token = pref.getString("token", null);
+        if (username == null || token == null) {
+            return false;
+        }
+
+        // Check is the token valid
+        UserHandler userHandler = new UserHandler();
+        if (userHandler.checkToken(username, token)) {
+            pref.edit().putString("username", username).apply();
+            pref.edit().putString("token", userHandler.getToken()).apply();
+            return true;
+        }
+
+        Toast.makeText(MainActivity.this, userHandler.getError(), Toast.LENGTH_SHORT).show();
         return false;
     }
 
-    private UserModel getUserData () {
-        //TODO Get Username from local database or sharedPreference,
-        // and pass to web server to check if user exist,
-        // if yes, return UserModel Data
-        UserModel userModel = null;
-        return user;
+    private UserModel getUserData() {
+        // Get username and token from SharedPreferences
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+        String username = pref.getString("username", null);
+        String token = pref.getString("token", null);
+
+        // Get records from SQLite
+        RecordHandler recordHandler = new RecordHandler(this);
+        List<RecordModel> records = recordHandler.getAllRecords();
+
+        // Set up UserModel
+        UserModel userModel = new UserModel(username);
+        userModel.setPersonalBest(RecordActivity.getPersonalBest(records));
+        userModel.setAverage(RecordActivity.getAverage(records));
+
+        // TODO: Get Global Rank from Web server with token
+        userModel.setGlobalRank(100);
+
+        return userModel;
     }
 
-    private void setUp(){
+    private void setUp() {
         if (checkUserLogin()) {
             user = getUserData();
-            tv_username.setText(user.getName());
-            tv_personalBest.setText(String.valueOf(user.getPersonalBest()));
-            tv_average.setText(String.valueOf(user.getAverage()));
-            tv_rank.setText(user.getGlobalRank());
-
+            tv_username.setText(user.getUsername());
+            tv_personalBest.setText(RecordActivity.getDisplay(user.getPersonalBest()));
+            tv_average.setText(RecordActivity.getDisplay(user.getAverage()));
+            tv_rank.setText(String.valueOf(user.getGlobalRank()));
         } else {
             alertLogin();
         }
     }
 
-    private void alertLogin(){
+    private void alertLogin() {
         //create new Alert
         final AlertDialog.Builder alert = new AlertDialog.Builder(this);
         //set alert properties

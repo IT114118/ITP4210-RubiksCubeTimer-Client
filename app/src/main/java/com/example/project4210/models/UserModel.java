@@ -3,10 +3,7 @@ package com.example.project4210.models;
 // Mysql
 
 public class UserModel {
-
-    private int id;
-    private String name;
-    private String password;
+    private String username;
 
     private int globalRank;
     private int numberOfSolve;
@@ -15,18 +12,14 @@ public class UserModel {
     private float ao12;
     private float average;
 
-    public UserModel(int id, String name, String password) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
+    public UserModel(String username) {
+        this.username = username;
     }
 
     @Override
     public String toString() {
         return "UserModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
+                "username='" + username + '\'' +
                 ", globalRank=" + globalRank +
                 ", numberOfSolve=" + numberOfSolve +
                 ", personalBest=" + personalBest +
@@ -36,28 +29,8 @@ public class UserModel {
                 '}';
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public String getUsername() {
+        return username;
     }
 
     public int getNumberOfSolve() {
