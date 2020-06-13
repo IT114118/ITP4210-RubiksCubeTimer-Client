@@ -1,5 +1,6 @@
 package com.example.project4210;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,8 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
                     if (result) {
                         Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
 
-                        // TODO: Auto login?
-                        // ...
+                        // Redirect to MainActivity
+                        Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(i);
                     }
                 } else {
                     Toast.makeText(RegisterActivity.this, errorString, Toast.LENGTH_SHORT).show();
@@ -68,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         UserHandler userHandler = new UserHandler();
         if (userHandler.signup(username, password)) {
             SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+            pref.edit().putString("username", username).apply();
             pref.edit().putString("token", userHandler.getToken()).apply();
             return true;
         }

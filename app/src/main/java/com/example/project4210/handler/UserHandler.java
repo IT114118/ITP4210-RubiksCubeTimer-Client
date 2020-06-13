@@ -82,6 +82,38 @@ public class UserHandler {
         return false;
     }
 
+    public boolean checkToken(String username, String token) {
+        try {
+            String postParams = "username=" + username + "&token=" + token;
+            HttpURLHandler handler = new HttpURLHandler("http://" + USBWebServerIP + ":8080/token.php", postParams);
+            switch (handler.getResponseCode()) {
+                case 200:
+                    try {
+                        JSONObject json = new JSONObject(handler.getReturnJson());
+                        if (String.valueOf(json.get("status")).equals("success")) {
+                            this.token = String.valueOf(json.get("token"));
+                            return true;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                case 503:
+                case 504:
+                    error = "Session expired, please login again";
+                    return false;
+                default: // 500, 502
+                    error = "Server error, please try again later";
+                    return false;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        error = "Fail to connect to the server";
+        return false;
+    }
+
     public String getError() {
         return error;
     }
