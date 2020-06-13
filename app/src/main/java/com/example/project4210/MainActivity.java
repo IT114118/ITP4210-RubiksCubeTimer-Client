@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +19,7 @@ import com.example.project4210.models.UserModel;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    ImageButton  btn_timer, btn_Settings, btn_algorithm, btn_record;
+    ImageButton btn_timer, btn_Settings, btn_algorithm, btn_record;
     TextView tv_username, tv_rank, tv_personalBest, tv_average, tv_recentPerformance;
     UserModel user;
 
@@ -163,6 +161,4 @@ public class MainActivity extends AppCompatActivity {
         //show Alert
         alert.create().show();
     }
-
-
 }
