@@ -7,7 +7,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_8">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,14 +18,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:text="Time: "/>
+                android:text="  Time: "
+                android:textSize="24dp" />
 
-            <TextView android:id="@+id/textView_Time"
+            <TextView
+                android:id="@+id/textView_Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:text="30.00"/>
+                android:text="30.00"
+                android:textSize="24dp" />
 
         </LinearLayout>
 
