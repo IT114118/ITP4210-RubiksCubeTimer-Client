@@ -26,8 +26,12 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (checkUserLogin()) {
+            // Redirect to MainActivity
+            Intent i = new Intent(UserActivity.this, MainActivity.class);
+            startActivity(i);
+
             //go to user page
-            setContentView(R.layout.activity_user);
+            //setContentView(R.layout.activity_user);
         } else {
             //go to login page
             setContentView(R.layout.activity_login);
@@ -42,6 +46,9 @@ public class UserActivity extends AppCompatActivity {
                     boolean result = signInUser(et_username.getText().toString(), et_password.getText().toString());
                     if (result) {
                         Toast.makeText(UserActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
+                        // Redirect to MainActivity
+                        Intent i = new Intent(UserActivity.this, MainActivity.class);
+                        startActivity(i);
                     }
                 }
             });
@@ -58,18 +65,24 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    private boolean checkUserLogin () {
-        //TODO Get Username from local database or sharedPreference,
-        // and pass to web server to check if user exist,
-        // if yes, return true
+    private boolean checkUserLogin() {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+        String username = pref.getString("username", null);
         String token = pref.getString("token", null);
+        if (username == null || token == null) {
+            return false;
+        }
 
         // Check is the token valid
+        UserHandler userHandler = new UserHandler();
+        if (userHandler.checkToken(username, token)) {
+            pref.edit().putString("username", username).apply();
+            pref.edit().putString("token", userHandler.getToken()).apply();
+            return true;
+        }
 
-        // if valid => { get global rank etc.. return true } .. sleeply.. later make...
-
+        Toast.makeText(UserActivity.this, userHandler.getError(), Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -79,9 +92,11 @@ public class UserActivity extends AppCompatActivity {
         UserHandler userHandler = new UserHandler();
         if (userHandler.login(username, password)) {
             SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
+            pref.edit().putString("username", username).apply();
             pref.edit().putString("token", userHandler.getToken()).apply();
             return true;
         }
+
         Toast.makeText(UserActivity.this, userHandler.getError(), Toast.LENGTH_SHORT).show();
         return false;
     }

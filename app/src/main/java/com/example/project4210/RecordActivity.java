@@ -12,6 +12,7 @@ import com.example.project4210.adapter.RecordAdapter;
 import com.example.project4210.handler.RecordHandler;
 import com.example.project4210.models.RecordModel;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,29 +62,29 @@ public class RecordActivity extends AppCompatActivity {
 
     public void generateStatistics() {
         records = recordHandler.getAllRecords();
-        tv_stats_best.setText(getStatisticsString(getPersonalBest()));
-        tv_stats_ao5.setText(getStatisticsString(getAo5()));
-        tv_stats_ao12.setText(getStatisticsString(getAo12()));
-        tv_stats_average.setText(getStatisticsString(getAverage()));
+        tv_stats_best.setText(getDisplay(getPersonalBest(records)));
+        tv_stats_ao5.setText(getDisplay(getAo5(records)));
+        tv_stats_ao12.setText(getDisplay(getAo12(records)));
+        tv_stats_average.setText(getDisplay(getAverage(records)));
     }
 
-    public float getPersonalBest() {
-        return (records.size() <= 0) ? -1 : getRecordTimeSortedArray()[0];
+    public static float getPersonalBest(List<RecordModel> records) {
+        return (records.size() <= 0) ? -1 : getRecordTimeSortedArray(records)[0];
     }
 
-    public float getAo5() {
-        return (records.size() < 5) ? -1 : getAverageInRange(5);
+    public static float getAo5(List<RecordModel> records) {
+        return (records.size() < 5) ? -1 : getAverageInRange(records, 5);
     }
 
-    public float getAo12() {
-        return (records.size() < 12) ? -1 : getAverageInRange(12);
+    public static float getAo12(List<RecordModel> records) {
+        return (records.size() < 12) ? -1 : getAverageInRange(records, 12);
     }
 
-    public float getAverage() {
-        return (records.size() <= 0) ? -1 : getAverageInRange(records.size());
+    public static float getAverage(List<RecordModel> records) {
+        return (records.size() <= 0) ? -1 : getAverageInRange(records, records.size());
     }
 
-    private float[] getRecordTimeSortedArray() {
+    private static float[] getRecordTimeSortedArray(List<RecordModel> records) {
         float[] recordTime = new float[records.size()];
         for (int i = 0; i < recordTime.length; i++) {
             recordTime[i] = records.get(i).getTime();
@@ -92,9 +93,8 @@ public class RecordActivity extends AppCompatActivity {
         return recordTime;
     }
 
-    private float getAverageInRange(int firstN) {
-        if (records.size() < firstN) return 0;
-        float[] recordTime = Arrays.copyOfRange(getRecordTimeSortedArray(), 0, firstN);
+    public static float getAverageInRange(List<RecordModel> records, int firstN) {
+        float[] recordTime = Arrays.copyOfRange(getRecordTimeSortedArray(records), 0, firstN);
         float sum = 0.0f;
         for (float time : recordTime) {
             sum += time;
@@ -102,7 +102,7 @@ public class RecordActivity extends AppCompatActivity {
         return sum / firstN;
     }
 
-    private String getStatisticsString(float num) {
-        return (num == -1) ? "-" : String.valueOf(num);
+    public static String getDisplay(float d) {
+        return (d <= -1) ? "-" : BigDecimal.valueOf(d).setScale(3, BigDecimal.ROUND_HALF_UP).toString();
     }
 }
