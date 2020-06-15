@@ -19,7 +19,7 @@ import com.example.project4210.models.UserModel;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton btn_timer, btn_Settings, btn_algorithm, btn_record;
+    ImageButton imgBtn_timer, imgBtn_settings, imgBtn_algorithm, imgBtn_record;
     TextView tv_username, tv_rank, tv_personalBest, tv_average, tv_recentPerformance;
     UserModel user;
 
@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         linkID();
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        setUp();
-    }
+//    Commented out because of duplicated alert
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        setUp();
+//    }
 
     @Override
     protected void onPostResume() {
@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void linkID(){
         //id linking with xml
-        btn_timer = findViewById(R.id.btn_timer);
-        btn_record = findViewById(R.id.btn_record);
-        btn_algorithm = findViewById(R.id.btn_algorithm);
-        btn_Settings = findViewById(R.id.btn_settings);
+        imgBtn_timer = findViewById(R.id.imgBtn_timer);
+        imgBtn_record = findViewById(R.id.imgBtn_record);
+        imgBtn_algorithm = findViewById(R.id.imgBtn_algorithm);
+        imgBtn_settings = findViewById(R.id.imgBtn_settings);
 
-        btn_timer.setOnClickListener(new View.OnClickListener() {
+        imgBtn_timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, TimerActivity.class);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_record.setOnClickListener(new View.OnClickListener() {
+        imgBtn_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, RecordActivity.class);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_algorithm.setOnClickListener(new View.OnClickListener() {
+        imgBtn_algorithm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, AlgorithmActivity.class);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_Settings.setOnClickListener(new View.OnClickListener() {
+        imgBtn_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, LeaderboardActivity.class);

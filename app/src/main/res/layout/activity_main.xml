@@ -141,7 +141,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/btn_timer"
+                android:id="@+id/imgBtn_timer"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
@@ -153,7 +153,7 @@
 
 
             <ImageButton
-                android:id="@+id/btn_algorithm"
+                android:id="@+id/imgBtn_algorithm"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
@@ -170,7 +170,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/btn_record"
+                android:id="@+id/imgBtn_record"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
@@ -181,7 +181,7 @@
                 android:text="Record" />
 
             <ImageButton
-                android:id="@+id/btn_settings"
+                android:id="@+id/imgBtn_settings"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="15dp"

@@ -47,21 +47,21 @@
             android:text="timer" />
 
         <Button
-            android:id="@+id/btn_algorithm"
+            android:id="@+id/imgBtn_algorithm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Algorithm" />
 
         <Button
-            android:id="@+id/btn_record"
+            android:id="@+id/imgBtn_record"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Record" />
 
         <Button
-            android:id="@+id/btn_settings"
+            android:id="@+id/imgBtn_settings"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
