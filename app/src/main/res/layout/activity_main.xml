@@ -146,9 +146,9 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/timer"
+                android:src="@drawable/timer_01"
                 android:scaleType="centerCrop"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:text="Timer" />
 
 
@@ -158,9 +158,9 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/cube"
+                android:src="@drawable/cube_01"
                 android:scaleType="centerCrop"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:text="Algorithm" />
 
         </TableRow>
@@ -175,9 +175,9 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/list"
+                android:src="@drawable/list01"
                 android:scaleType="centerCrop"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:text="Record" />
 
             <ImageButton
@@ -186,9 +186,9 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/settings"
+                android:src="@drawable/settings_01"
                 android:scaleType="centerCrop"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:text="Settings" />
 
         </TableRow>
