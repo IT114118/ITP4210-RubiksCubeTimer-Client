@@ -186,7 +186,7 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/settings_01"
+                android:src="@drawable/rank"
                 android:scaleType="centerCrop"
                 android:padding="30dp"
                 android:text="Settings" />
