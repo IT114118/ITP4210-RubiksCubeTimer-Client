@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.project4210.adapter.LeaderboardAdapter;
-import com.example.project4210.adapter.RecordAdapter;
 import com.example.project4210.handler.HttpURLHandler;
 import com.example.project4210.models.LeaderboardModel;
-import com.example.project4210.models.RecordModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

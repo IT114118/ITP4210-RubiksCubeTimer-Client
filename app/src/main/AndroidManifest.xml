@@ -11,16 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LeaderboardActivity"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".UserActivity" />
-        <activity android:name=".AlgorithmActivity" />
-        <activity android:name=".RecordActivity" />
-        <activity android:name=".TimerActivity" />
+        <activity
+            android:name=".SettingActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".LeaderboardActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".UserActivity" />
+        <activity
+            android:name=".UserActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AlgorithmActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RecordActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".TimerActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

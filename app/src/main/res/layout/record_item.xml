@@ -17,7 +17,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  Time: "
+                android:text="Time: "
                 android:textSize="24dp" />
 
             <TextView
@@ -42,6 +42,7 @@
             <TextView android:id="@+id/textView_Scramble"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="13dp"
                 android:text="R U F R U F R U F R U F R U F R U F"/>
 
         </LinearLayout>

@@ -45,7 +45,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:orientation="horizontal"
@@ -62,7 +62,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Personal Best" />
 
@@ -70,7 +69,6 @@
                 android:id="@+id/tv_personalBest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
                 android:gravity="center"
                 android:text="-- --"
                 android:textSize="26sp" />
@@ -86,7 +84,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Average" />
 
@@ -94,7 +91,6 @@
                 android:id="@+id/tv_average"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
                 android:gravity="center"
                 android:text="-- --"
                 android:textSize="26sp" />
@@ -109,7 +105,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Global Rank" />
 
@@ -117,7 +112,6 @@
                 android:id="@+id/tv_rank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
                 android:gravity="center"
                 android:text="-- --"
                 android:textSize="26sp" />
@@ -131,6 +125,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:paddingBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,9 +141,9 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/timer_01"
-                android:scaleType="centerCrop"
                 android:padding="30dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/timer_new"
                 android:text="Timer" />
 
 
@@ -158,9 +153,9 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/cube_01"
-                android:scaleType="centerCrop"
                 android:padding="30dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/rank_new"
                 android:text="Algorithm" />
 
         </TableRow>
@@ -175,7 +170,7 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/list01"
+                android:src="@drawable/record_new"
                 android:scaleType="centerCrop"
                 android:padding="30dp"
                 android:text="Record" />
@@ -186,7 +181,7 @@
                 android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/rectangle_1"
-                android:src="@drawable/rank"
+                android:src="@drawable/settings_new"
                 android:scaleType="centerCrop"
                 android:padding="30dp"
                 android:text="Settings" />

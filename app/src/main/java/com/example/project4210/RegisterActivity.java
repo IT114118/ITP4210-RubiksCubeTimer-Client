@@ -48,21 +48,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean checkUserName(String username) {
-        if (username.length() >= 2  && username.length() <= 20) {
-            return true;
-        } else {
-            errorString = "Username too short or too long";
-            return false;
-        }
+        errorString = "Username too short or too long";
+        return (username.length() >= 2 && username.length() <= 20);
     }
 
     private boolean checkPassword(String password, String confirmPassword) {
-        if (password.equals(confirmPassword)) {
-            return true;
-        } else {
-            errorString = "Those passwords didn't match. Please try again";
-            return false;
-        }
+        errorString = "Those passwords didn't match. Please try again";
+        return (password.equals(confirmPassword));
     }
 
     private boolean registerUser(String username, String password) {

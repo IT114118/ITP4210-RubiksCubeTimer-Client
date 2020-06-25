@@ -28,13 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         linkID();
+        if (!setUp()) {
+            alertLogin();
+        }
     }
-//    Commented out because of duplicated alert
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        setUp();
-//    }
 
     @Override
     protected void onPostResume() {
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setUp();
     }
 
-    private void linkID(){
+    private void linkID() {
         //id linking with xml
         imgBtn_timer = findViewById(R.id.imgBtn_timer);
         imgBtn_record = findViewById(R.id.imgBtn_record);
@@ -68,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         imgBtn_algorithm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, AlgorithmActivity.class);
+                Intent i = new Intent(MainActivity.this, LeaderboardActivity.class);
                 startActivity(i);
             }
         });
@@ -76,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         imgBtn_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, LeaderboardActivity.class);
+                Intent i = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(i);
             }
         });
@@ -86,14 +83,6 @@ public class MainActivity extends AppCompatActivity {
         tv_personalBest = findViewById(R.id.tv_personalBest);
         tv_average = findViewById(R.id.tv_average);
         tv_recentPerformance = findViewById(R.id.tv_rank);
-    }
-
-    // TODO: Create a button or something to logout
-    private void logout() {
-        // Clear SharedPreferences Account Data
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("Account", 0);
-        pref.edit().remove("username").apply();
-        pref.edit().remove("token").apply();
     }
 
     private boolean checkUserLogin() {
@@ -139,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         return userModel;
     }
 
-    private void setUp() {
+    private boolean setUp() {
         if (checkUserLogin()) {
             user = getUserData();
             tv_username.setText(user.getUsername());
@@ -147,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
             tv_average.setText(RecordActivity.getDisplay(user.getAverage()));
             int rank = user.getGlobalRank();
             tv_rank.setText((rank <= 0) ? "-" : String.valueOf(rank));
-        } else {
-            alertLogin();
+            return true;
         }
+        return false;
     }
 
     private void alertLogin() {
