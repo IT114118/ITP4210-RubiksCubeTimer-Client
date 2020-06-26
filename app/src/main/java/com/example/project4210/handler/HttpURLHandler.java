@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 public class HttpURLHandler {
-    public static final String USBWebServerIP = "10.0.0.17";//"10.0.0.18";
+    public static final String USBWebServerAddr = "172.20.10.12";//"10.0.0.18";
     private int responseCode;
     private String returnJson;
 

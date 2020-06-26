@@ -30,8 +30,6 @@ public class RecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_record);
 
         recordHandler = new RecordHandler(this);
-        //recordHandler.deleteAllRecords(); // Delete all records in database
-        //recordHandler.addRecord(new RecordModel(3.0f, "R U F")); // Add a example record to database
 
         listView = findViewById(R.id.listView_Records);
         listView.setAdapter(new RecordAdapter(this, recordHandler.getAllRecords()));
@@ -103,6 +101,6 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     public static String getDisplay(float d) {
-        return (d <= -1) ? "-" : BigDecimal.valueOf(d).setScale(3, BigDecimal.ROUND_HALF_UP).toString();
+        return (d <= -1) ? "-" : BigDecimal.valueOf(d).setScale(3, BigDecimal.ROUND_HALF_UP).toString() + "s";
     }
 }

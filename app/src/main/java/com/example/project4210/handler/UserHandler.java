@@ -11,7 +11,7 @@ public class UserHandler {
     public boolean login(String username, String password) {
         try {
             String postParams = "username=" + username + "&password=" + password;
-            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerIP + ":8080/login.php", postParams);
+            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/login.php", postParams);
             switch (handler.getResponseCode()) {
                 case 200:
                     try {
@@ -47,7 +47,7 @@ public class UserHandler {
     public boolean signup(String username, String password) {
         try {
             String postParams = "username=" + username + "&password=" + password;
-            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerIP + ":8080/signup.php", postParams);
+            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/signup.php", postParams);
             switch (handler.getResponseCode()) {
                 case 200:
                     try {
@@ -80,7 +80,7 @@ public class UserHandler {
     public boolean checkToken(String username, String token) {
         try {
             String postParams = "username=" + username + "&token=" + token;
-            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerIP + ":8080/token.php", postParams);
+            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/token.php", postParams);
             switch (handler.getResponseCode()) {
                 case 200:
                     try {
@@ -112,7 +112,7 @@ public class UserHandler {
     public int getGlobalRank(String username, String token, float record) {
         try {
             String postParams = "username=" + username + "&token=" + token + "&record=" + record;
-            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerIP + ":8080/api/get_global_rank.php", postParams);
+            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/api/get_global_rank.php", postParams);
             switch (handler.getResponseCode()) {
                 case 200:
                     try {

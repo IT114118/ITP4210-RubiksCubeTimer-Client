@@ -1,8 +1,5 @@
 package com.example.project4210;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -30,7 +27,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         List<LeaderboardModel> records = new ArrayList<>();
 
         try {
-            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerIP + ":8080/api/get_record_list.php");
+            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/api/get_record_list.php");
             try {
                 JSONArray jsonArray = new JSONArray(handler.getReturnJson());
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -42,7 +39,6 @@ public class LeaderboardActivity extends AppCompatActivity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                alertLogin();
             }
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -52,28 +48,5 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         listView_Leaderboard = findViewById(R.id.listView_Leaderboard);
         listView_Leaderboard.setAdapter(new LeaderboardAdapter(this, records));
-    }
-
-    private void alertLogin() {
-        //create new Alert
-        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        //set alert properties
-        alert.setTitle("Not Signed In");
-        alert.setMessage("Rankings are only accessible when signed in. Would you like to sign in/up?");
-        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(LeaderboardActivity.this, UserActivity.class);
-                startActivity(intent);
-            }
-        });
-        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        });
-        //show Alert
-        alert.create().show();
     }
 }

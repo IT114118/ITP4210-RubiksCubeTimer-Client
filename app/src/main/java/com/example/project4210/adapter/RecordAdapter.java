@@ -49,7 +49,7 @@ public class RecordAdapter extends BaseAdapter {
         TextView textView_Scramble = convertView.findViewById(R.id.textView_Scramble);
         final CheckBox checkBox_Star = convertView.findViewById(R.id.checkBox_Star);
 
-        textView_Time.setText(String.valueOf(records.get(position).getTime()));
+        textView_Time.setText(String.valueOf(records.get(position).getTime()) + "s");
         textView_Scramble.setText(records.get(position).getScramble());
         checkBox_Star.setChecked(records.get(position).isStarred());
 
