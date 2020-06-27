@@ -27,7 +27,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         List<LeaderboardModel> records = new ArrayList<>();
 
         try {
-            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/api/get_record_list.php");
+            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/get_record_list.php");
             try {
                 JSONArray jsonArray = new JSONArray(handler.getReturnJson());
                 for (int i = 0; i < jsonArray.length(); i++) {

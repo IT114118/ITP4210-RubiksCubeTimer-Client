@@ -112,7 +112,7 @@ public class UserHandler {
     public int getGlobalRank(String username, String token, float record) {
         try {
             String postParams = "username=" + username + "&token=" + token + "&record=" + record;
-            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/api/get_global_rank.php", postParams);
+            HttpURLHandler handler = new HttpURLHandler("http://" + HttpURLHandler.USBWebServerAddr + ":8080/get_global_rank.php", postParams);
             switch (handler.getResponseCode()) {
                 case 200:
                     try {
