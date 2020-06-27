@@ -69,7 +69,9 @@ public class TimerActivity extends AppCompatActivity {
                     handler.removeCallbacks(r);
                     get_time = (float)(get_mm*60 + get_ss + ((float)get_mill/100));
                     chronometer_static = false;
-                    alertSaveRecord();
+                    alertSaveRecord(scramble);
+                    scramble = createScramble(20);
+                    tv_scramble.setText(scramble);
                 }
             }
         });
@@ -87,7 +89,7 @@ public class TimerActivity extends AppCompatActivity {
         return str.toString();
     }
 
-    private void alertSaveRecord() {
+    private void alertSaveRecord(final String scramble) {
         //create new Alert
         final AlertDialog.Builder alert = new AlertDialog.Builder(this);
         //set alert properties
